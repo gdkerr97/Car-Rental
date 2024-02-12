@@ -1,0 +1,99 @@
+<section id="homepage" *ngIf="!isAdminLogged && !isCustomerLogged">
+<div class="container-fluid">
+  <div class="row align-items-center justify-content-center">
+    <div id="left" class="col-md-6">
+    </div>
+    <div class="col-md-6">
+      <div class="container text-center">
+        <!-- <h1 style="font-size: 50px; font-weight: 700;">Car Rental</h1> -->
+        <img src="../assets/img/logo.png" alt="" class="rounded mx-auto d-block" style="width: 250px; height: 250px;">
+
+        <button type="button" routerLink="/register" routerLinkActive="active" class="btn btn-primary me-4 mt-3">Signup</button>
+        <button type="button" routerLink="/login" routerLinkActive="active" class="btn btn-primary mt-3">Login</button>
+
+        <router-outlet></router-outlet>
+
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section id="admin" *ngIf="isAdminLogged">
+<nav class="navbar navbar-expand-sm navbar-light" id="neubar">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/admin/dashboard"><img src="../assets/img/cars.png" alt="" height="80"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" routerLink="/admin/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" routerLink="/car">Publish Car</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" routerLink="/bookings">Bookings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" (click)="logout()">Logout</a>
+        </li>
+
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Company
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Blog</a></li>
+            <li><a class="dropdown-item" href="#">About Us</a></li>
+            <li><a class="dropdown-item" href="#">Contact us</a></li>
+          </ul>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+</section>
+
+
+<section id="customer" *ngIf="isCustomerLogged">
+<nav class="navbar navbar-expand-sm navbar-light" id="neubar">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/customer/dashboard"><img src="../assets/img/cars.png" alt="" height="80"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto ">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" routerLink="/customer/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" routerLink="/my_bookings">My Bookings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" (click)="logout()">Logout</a>
+        </li>
+
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Company
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Blog</a></li>
+            <li><a class="dropdown-item" href="#">About Us</a></li>
+            <li><a class="dropdown-item" href="#">Contact us</a></li>
+          </ul>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+</section>

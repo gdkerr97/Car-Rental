@@ -1,0 +1,45 @@
+<div class="alert alert-success alert-dismissible d-flex align-items-center fade show" *ngIf="success">
+    <i class="bi-check-circle-fill"></i>
+    <strong class="mx-2">Success!</strong> Booking changed successfully!
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  
+  
+  <!-- Error Alert -->
+  <div class="alert alert-danger alert-dismissible fade show" *ngIf="failure">
+    <strong>Error!</strong> A problem has been occurred: {{message || 'Server is unreachable!'}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  
+  <div class="container justify-content-center align-items-center d-flex flex-column mt-5">
+      <table class="table">
+          <thead>
+            <tr>
+            <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+              <th scope="col">From Date</th>
+              <th scope="col">To Date</th>
+              <th scope="col">Days</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let book of bookings; index as i">
+            <th scope="row">{{i +  1}}</th>
+              <td>{{book.username}}</td>
+              <td>{{book.email}}</td>
+              <td>{{book.fromDate | date: 'mediumDate'}}</td>
+              <td>{{book.toDate | date: 'mediumDate'}}</td>
+              <td>{{book.days}}</td>
+              <td>{{book.price}}</td>
+              <td><strong [ngStyle]="{'color': book.bookStatus?.toString() === 'PENDING' ? 'blue' : book.bookStatus?.toString() === 'APPROVED' ? 'green' : 'red'}"> {{book.bookStatus}} </strong></td>
+              <td><button class="btn btn-success" (click)="changeStatus(book.id!, 'APPROVE')">Approve</button></td>
+              <td><button class="btn btn-danger" (click)="changeStatus(book.id!, 'REJECT')">Reject</button></td>
+            </tr>
+          </tbody>
+        </table>
+</div>

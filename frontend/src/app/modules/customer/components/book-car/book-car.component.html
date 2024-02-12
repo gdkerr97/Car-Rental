@@ -1,0 +1,59 @@
+<!-- Success Alert -->
+<div class="alert alert-success alert-dismissible d-flex align-items-center fade show" *ngIf="success">
+    <i class="bi-check-circle-fill"></i>
+    <strong class="mx-2">Success!</strong> Booking request submitted successfully!
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  
+  
+  <!-- Error Alert -->
+  <div class="alert alert-danger alert-dismissible fade show" *ngIf="failure">
+    <strong>Error!</strong> A problem has been occurred: {{message || 'Server is unreachable!'}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  
+  <div class="container justify-content-center align-items-center d-flex flex-column mt-5">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Image</th>
+              <th scope="col">Name</th>
+              <th scope="col">Brand</th>
+              <th scope="col">Color</th>
+              <th scope="col">Type</th>
+              <th scope="col">Transmission</th>
+              <th scope="col">Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img [src]="car.returnedImage" class="card-img-top" height="100" width="100"></td>
+              <td>{{car.name}}</td>
+              <td>{{car.brand}}</td>
+              <td>{{car.color}}</td>
+              <td>{{car.type}}</td>
+              <td>{{car.transmission}}</td>
+              <td>{{car.year}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <form [formGroup]="bookForm" (ngSubmit)="book()" novalidate>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-4">
+                        <label for="start">From Date:</label>
+                        <input type="date" id="start" name="book-start" formControlName="fromDate" [value]="actualDate" [min]="actualDate" max="2100-12-31"/>
+                    </div>
+                
+                <div class="col-4"> 
+                    <label for="end">To Date:</label>
+                    <input type="date" id="end" name="book-end" formControlName="toDate" [value]="actualDate" [min]="actualDate" max="2100-12-31" />
+                </div>
+                <div class="col-4 mt-3"> 
+                    <button type="submit" class="btn btn-primary">Book this car</button>
+                </div>
+            </div>
+        </div>
+        </form>
+  </div>

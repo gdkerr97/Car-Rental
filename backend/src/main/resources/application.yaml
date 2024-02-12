@@ -1,0 +1,20 @@
+server:
+  port: 8081
+
+spring:
+
+  datasource:
+    url: "jdbc:mysql://localhost:3306/car_rental"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+application:
+  security:
+    jwt:
+      secret-key: 9eac181bd5ce8b0ba0c505413cdbcfce0034dcd92f78605e3df3eb43c82f566b

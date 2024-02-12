@@ -1,0 +1,42 @@
+<div class="container mt-5 pb-1 w-50">
+    <form [formGroup]="signupForm" (ngSubmit)="register()" novalidate>
+        <div class="form-group mb-3 p-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" aria-describedby="nameHelp" required [ngClass]="{'border-danger': name?.invalid && (name?.dirty || name?.touched), 'border-success': name?.valid}">
+            <div *ngIf="name?.errors?.['required']" id="nameHelp" class="form-text text-danger">Name is required!</div>
+            <div *ngIf="name?.errors?.['minlength']" id="nameHelp" class="form-text text-danger">Name must be 5-20 characters long.</div>
+            <div *ngIf="name?.valid" id="nameHelp" class="form-text text-success">Valid name!</div>
+
+          </div>
+        <div class="mb-3 p-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" required [ngClass]="{'border-danger': email?.invalid && (email?.dirty || email?.touched), 'border-success': email?.valid}">
+          <div *ngIf="email?.errors?.['required']" id="emailHelp" class="form-text text-danger">Email is required!</div>
+          <div *ngIf="email?.errors?.['email']" id="emailHelp" class="form-text text-danger">This must be a valid email!</div>
+          <div *ngIf="email?.valid" id="emailHelp" class="form-text text-success">Valid email!</div>
+        </div>
+        
+        <div class="mb-3 p-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" formControlName="password" required [ngClass]="{'border-danger': password?.invalid && (password?.dirty || password?.touched), 'border-success': password?.valid}">
+          <div *ngIf="password?.errors?.['required']" id="passwordHelpInline" class="form-text text-danger">Password is required!</div>
+          <div *ngIf="password?.valid" id="passwordHelpInline" class="form-text text-success">Valid password!</div>
+
+        </div>
+        <button type="submit" [disabled]="signupForm.invalid" class="btn btn-success mb-3">Submit</button>
+      </form>
+
+
+      <ng-template [ngIf]="success == true">
+      <div class="alert alert-success mt-2">
+        <strong>Success!</strong> User signed up!
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="failure == true">
+      <div class="alert alert-danger mt-2">
+        <strong>Failed!</strong> {{message}}
+      </div>
+    </ng-template>
+    
+</div>

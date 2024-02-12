@@ -1,0 +1,71 @@
+<!-- Success Alert -->
+<div class="alert alert-success alert-dismissible d-flex align-items-center fade show" *ngIf="success">
+    <i class="bi-check-circle-fill"></i>
+    <strong class="mx-2">Success!</strong> Car updated successfully.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  
+  <!-- Error Alert -->
+  <div class="alert alert-danger alert-dismissible fade show" *ngIf="failure">
+    <strong>Error!</strong> A problem has been occurred while submitting your data.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+  
+  
+  <div class="container mt-5 pb-1 w-50  d-flex justify-content-center align-items-center text-center">
+      <form [formGroup]="publishForm" (ngSubmit)="publish()" ngnovalidate class="bg-light p-4">
+  
+          <h1 class="mb-4">Update Car</h1>
+  
+          <div class="form-group mt-3 p-3">
+              <input type="text" class="form-control" id="name" placeholder="Name" formControlName="name" aria-describedby="nameHelp" required [ngClass]="{'border-danger': name?.invalid && (name?.dirty || name?.touched), 'border-success': name?.valid}">
+              <div *ngIf="name?.errors?.['required']" id="nameHelp" class="form-text text-danger">Name is required!</div>
+              <div *ngIf="name?.errors?.['minlength']" id="nameHelp" class="form-text text-danger">Name must be 5-20 characters long.</div>
+              <div *ngIf="name?.valid" id="nameHelp" class="form-text text-success">Valid name!</div>
+  
+              <select class="form-control mt-3" formControlName="brand">
+                  <option>Select a Brand Name</option>
+                  <option *ngFor="let brand of brands">{{brand}}</option>
+                </select>
+  
+              <select class="form-control mt-3" formControlName="type">
+                  <option>Select a Type</option>
+                  <option *ngFor="let type of types">{{type}}</option>
+                </select>
+  
+              <select class="form-control mt-3" formControlName="transmission">
+                  <option>Select a Transmission</option>
+                  <option *ngFor="let transmission of transmissions" >{{transmission}}</option>
+              </select>
+  
+              <select class="form-control mt-3" formControlName="color">
+                  <option>Select a Color</option>
+                  <option *ngFor="let color of colors" >{{color}}</option>
+              </select>
+  
+              <input type="text" class="form-control  mt-3" id="year" placeholder="Year" formControlName="year" aria-describedby="yearHelp" required [ngClass]="{'border-danger': year?.invalid && (year?.dirty || year?.touched), 'border-success': year?.valid}" >
+              <div *ngIf="year?.errors?.['required']" id="yearHelp" class="form-text text-danger">Year is required!</div>
+              <div *ngIf="year?.errors?.['minlength']" id="yearHelp" class="form-text text-danger">Year must be 4 characters long.</div>
+              <div *ngIf="year?.errors?.['maxlength']" id="yearHelp" class="form-text text-danger">Year must be 4 characters long.</div>
+              <div *ngIf="year?.valid" id="yearHelp" class="form-text text-success">Valid year!</div>
+  
+              <input type="number" class="form-control  mt-3" min="1" max="999999" id="price" placeholder="Price" formControlName="price" aria-describedby="priceHelp" required [ngClass]="{'border-danger': price?.invalid && (price?.dirty || price?.touched), 'border-success': price?.valid}" >
+              <div *ngIf="price?.errors?.['required']" id="priceHelp" class="form-text text-danger">Price is required!</div>
+              <div *ngIf="price?.errors?.['minlength']" id="priceHelp" class="form-text text-danger">Price must be 5-20 characters long.</div>
+              <div *ngIf="price?.valid" id="priceHelp" class="form-text text-success">Valid price!</div>
+       
+  
+            <input type="file" class="form-control-file  mt-3" id="imageFile" accept="image/x-png, image/gif, image/jpeg">
+  
+            </div>
+  
+  
+          <button type="submit" [disabled]="publishForm.invalid" class="btn btn-success mb-3 mt-3">Submit</button>
+        </form>
+  
+  
+  
+      
+  </div>
+  
+  
